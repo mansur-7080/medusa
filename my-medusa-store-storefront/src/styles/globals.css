@@ -19,7 +19,10 @@
 
   input:focus ~ label,
   input:not(:placeholder-shown) ~ label {
-    @apply -translate-y-2 text-xsmall-regular;
+    transform: translateY(-0.5rem);
+    font-size: 10px;
+    line-height: 1rem;
+    font-weight: 400;
   }
 
   input:focus ~ label {
@@ -79,11 +82,15 @@
   }
 
   .text-large-regular {
-    @apply text-base leading-6 font-normal;
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+    font-weight: 400;
   }
 
   .text-large-semi {
-    @apply text-base leading-6 font-semibold;
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+    font-weight: 600;
   }
 
   .text-xl-regular {
@@ -91,7 +98,9 @@
   }
 
   .text-xl-semi {
-    @apply text-2xl leading-[36px] font-semibold;
+    font-size: 1.5rem; /* 24px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 600;
   }
 
   .text-2xl-regular {
@@ -108,5 +117,140 @@
 
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
+  }
+
+  /* Navigation Animations */
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out forwards;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounceGentle 0.6s ease-out forwards;
+  }
+
+  /* Loading Animations */
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 2s linear infinite;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Modal Animations */
+  .modal-backdrop {
+    backdrop-filter: blur(4px);
+    transition: backdrop-filter 0.3s ease;
+  }
+
+  /* Button Animations */
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  .btn-ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-ripple:active::before {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceGentle {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 640px) {
+  .content-container {
+    @apply px-4;
+  }
+  
+  .mobile-nav-item {
+    @apply py-3 px-4 border-b border-gray-100 last:border-b-0;
+  }
+}
+
+@media (max-width: 768px) {
+  .tablet-hide {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .desktop-hide {
+    display: none;
   }
 }
